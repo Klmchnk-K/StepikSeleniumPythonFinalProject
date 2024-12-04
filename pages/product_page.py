@@ -10,13 +10,9 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code()
 
     def should_be_added_product_message(self):
-        added_product_message = self.driver.find_element(*ProductPageLocators.ADDED_PRODUCT_MESSAGE).text
-        product_name = self.driver.find_element(*ProductPageLocators.PRODUCT_NAME).text
-
-        assert added_product_message == product_name, "Wrong name of the added product"
+        assert (self.get_text(*ProductPageLocators.ADDED_PRODUCT_MESSAGE) ==
+                self.get_text(*ProductPageLocators.PRODUCT_NAME)), "Wrong name of the added product"
 
     def should_be_basket_total_message(self):
-        basket_total_message = self.driver.find_element(*ProductPageLocators.BASKET_TOTAL_MESSAGE).text
-        product_price = self.driver.find_element(*ProductPageLocators.PRODUCT_PRICE).text
-
-        assert basket_total_message == product_price, "Wrong basket total"
+        assert (self.get_text(*ProductPageLocators.BASKET_TOTAL_MESSAGE) ==
+                self.get_text(*ProductPageLocators.PRODUCT_PRICE)), "Wrong basket total"

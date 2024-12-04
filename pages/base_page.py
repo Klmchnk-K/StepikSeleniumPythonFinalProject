@@ -20,6 +20,9 @@ class BasePage():
             return False
         return True
 
+    def get_text(self, how, what):
+        return self.driver.find_element(how, what).text
+
     def solve_quiz_and_get_code(self):
         alert = self.driver.switch_to.alert
 
