@@ -3,11 +3,17 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.XPATH, "//a[@id='login_link']")
+    BASKET_LINK = (By.XPATH, "//div[contains(@class, 'basket-mini')]//a")
 
 
 class LoginPageLocators():
     LOGIN_FORM = (By.XPATH, "//form[@id='login_form']")
     REGISTER_FORM = (By.XPATH, "//form[@id='register_form']")
+
+
+class BasketPageLocators():
+    NONEMPTY_BASKET = (By.XPATH, "//form[@id='basket_formset']")
+    EMPTY_BASKET_MESSAGE = (By.XPATH, "//div[@id='content_inner']/p")
 
 
 class ProductPageLocators():
