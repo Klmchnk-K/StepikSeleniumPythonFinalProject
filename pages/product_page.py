@@ -16,9 +16,9 @@ class ProductPage(BasePage):
             "Success message is presented, but should not be, due its disappearing"
 
     def should_be_added_product_message(self):
-        assert (self.get_text(*ProductPageLocators.ADDED_PRODUCT_MESSAGE) ==
-                self.get_text(*ProductPageLocators.PRODUCT_NAME)), "Wrong name of the added product"
+        assert (self.get_element(*ProductPageLocators.ADDED_PRODUCT_MESSAGE).text ==
+                self.get_element(*ProductPageLocators.PRODUCT_NAME).text), "Wrong name of the added product"
 
     def should_be_basket_total_message(self):
-        assert (self.get_text(*ProductPageLocators.BASKET_TOTAL_MESSAGE) ==
-                self.get_text(*ProductPageLocators.PRODUCT_PRICE)), "Wrong basket total"
+        assert (self.get_element(*ProductPageLocators.BASKET_TOTAL_MESSAGE).text ==
+                self.get_element(*ProductPageLocators.PRODUCT_PRICE).text), "Wrong basket total"

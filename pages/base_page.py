@@ -13,6 +13,9 @@ class BasePage():
     def open(self):
         self.driver.get(self.url)
 
+    def get_element(self, how, what):
+        return self.driver.find_element(how, what)
+
     def is_element_present(self, how, what):
         try:
             self.driver.find_element(how, what)
@@ -35,8 +38,20 @@ class BasePage():
             return False
         return True
 
-    def get_text(self, how, what):
-        return self.driver.find_element(how, what).text
+    def go_to_login_page(self):
+        link = self.driver.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def go_to_basket_page(self):
+        link = self.driver.find_element(*BasePageLocators.BASKET_LINK)
+        link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
+            "User icon is not presented, probably unauthorised user"
 
     def solve_quiz_and_get_code(self):
         alert = self.driver.switch_to.alert
@@ -54,14 +69,3 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
-
-    def go_to_login_page(self):
-        link = self.driver.find_element(*BasePageLocators.LOGIN_LINK)
-        link.click()
-
-    def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
-
-    def go_to_basket_page(self):
-        link = self.driver.find_element(*BasePageLocators.BASKET_LINK)
-        link.click()
