@@ -27,6 +27,14 @@ class BasePage():
             return True
         return False
 
+    def is_disappeared(self, how, what, timeout=5):
+        try:
+            WebDriverWait(self.driver, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return True
+
     def get_text(self, how, what):
         return self.driver.find_element(how, what).text
 

@@ -7,7 +7,13 @@ class ProductPage(BasePage):
         add_to_basket_button = self.driver.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_basket_button.click()
 
-        self.solve_quiz_and_get_code()
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.ADDED_PRODUCT_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_of_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.ADDED_PRODUCT_MESSAGE), \
+            "Success message is presented, but should not be, due its disappearing"
 
     def should_be_added_product_message(self):
         assert (self.get_text(*ProductPageLocators.ADDED_PRODUCT_MESSAGE) ==
